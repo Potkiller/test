@@ -1,0 +1,98 @@
+//────────────────────────────────────────────────────────────────────────────
+// Header
+//────────────────────────────────────────────────────────────────────────────
+Let's make a game!
+name:Strategy Prototype
+by:Your Name
+version:0.1
+desc:A prototype for a rock-paper-scissors strategy game in IGM.
+
+//────────────────────────────────────────────────────────────────────────────
+// Settings
+//────────────────────────────────────────────────────────────────────────────
+Settings:
+prices increase by 115%
+resources are visible by default
+buildings are visible by default
+clickables are hidden by default  // so training buttons only appear once you have the right building :contentReference[oaicite:0]{index=0}
+
+//────────────────────────────────────────────────────────────────────────────
+// Resources
+//────────────────────────────────────────────────────────────────────────────
+Resources:
+*gold
+  starts at 0
+  displayed as %a gold
+  show 0 digits
+
+*soldiers
+  starts at 0
+  displayed as %a soldier%s
+  show 0 digits
+
+*spikeMasters
+  starts at 0
+  displayed as %a Spike Master%s
+  show 0 digits
+
+*cavalry
+  starts at 0
+  displayed as %a cavalry
+  show 0 digits :contentReference[oaicite:1]{index=1}
+
+//────────────────────────────────────────────────────────────────────────────
+// Buildings
+//────────────────────────────────────────────────────────────────────────────
+Buildings:
+*townHall
+  name:Town Hall
+  desc:Generates 10 gold per hour.
+  starts at 1
+  price increases by 100%
+  on tick:yield 0.00277778 gold  // 10 gold / 3600 seconds :contentReference[oaicite:2]{index=2}
+
+*barracks
+  name:Barracks
+  desc:Allows training Soldiers.
+  starts at 0
+  cost:100 gold
+  price increases by 115%
+
+*pikeForge
+  name:Pike Forge
+  desc:Allows training Spike Masters.
+  starts at 0
+  cost:200 gold
+  price increases by 115%
+
+*stables
+  name:Stables
+  desc:Allows training Cavalry.
+  starts at 0
+  cost:300 gold
+  price increases by 115% :contentReference[oaicite:3]{index=3}
+
+//────────────────────────────────────────────────────────────────────────────
+// Clickables (Troop Training)
+//────────────────────────────────────────────────────────────────────────────
+Clickables:
+*trainSoldier
+  name:Train Soldier
+  desc:Train a Soldier for 1 gold.
+  req:barracks
+  cost:1 gold
+  on click:yield 1 soldiers :contentReference[oaicite:4]{index=4}
+
+*trainSpikeMaster
+  name:Train Spike Master
+  desc:Train a Spike Master for 2 gold.
+  req:pikeForge
+  cost:2 gold
+  on click:yield 1 spikeMasters :contentReference[oaicite:5]{index=5}
+
+*trainCavalry
+  name:Train Cavalry
+  desc:Train a Cavalry for 3 gold.
+  req:stables
+  cost:3 gold
+  on click:yield 1 cavalry :contentReference[oaicite:6]{index=6}
